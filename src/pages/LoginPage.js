@@ -2,18 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
-  // State for storing form data
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    userType: "user", // Default to user login
+    userType: "user",
   });
 
-  // State for storing form submission status and error message
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -22,33 +19,31 @@ const LoginPage = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     console.log("-----", formData);
 
-    const loginEndpoint = formData.userType === "admin" ? " http://localhost:3000/api/admin/login" : " http://localhost:3000/api/login";
-
     try {
-      // Make POST request to backend here (replace with actual endpoint)
-      const response = await fetch(loginEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/${formData.userType}/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         setError("Login successful");
         setFormData({
           username: "",
           password: "",
-          userType: "user", // Reset to default user login after successful login
+          userType: "user",
         });
-        // Redirect to home page or admin dashboard based on userType
         if (formData.userType === "admin") {
           window.location.href = "/admin-dashboard";
         } else {
@@ -73,7 +68,12 @@ const LoginPage = () => {
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Username
+            </label>
             <input
               type="text"
               id="username"
@@ -85,7 +85,12 @@ const LoginPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
             <input
               type="password"
               id="password"
@@ -97,7 +102,12 @@ const LoginPage = () => {
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="userType" className="block text-sm font-medium text-gray-700">User Type</label>
+            <label
+              htmlFor="userType"
+              className="block text-sm font-medium text-gray-700"
+            >
+              User Type
+            </label>
             <select
               id="userType"
               name="userType"
@@ -111,14 +121,19 @@ const LoginPage = () => {
           </div>
           <button
             type="submit"
-            className={`w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600 ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}
           </button>
           <p className="mt-4 text-sm text-gray-600">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-indigo-500 hover:text-indigo-700">
+            <Link
+              to="/signup"
+              className="text-indigo-500 hover:text-indigo-700"
+            >
               Sign up here
             </Link>
           </p>

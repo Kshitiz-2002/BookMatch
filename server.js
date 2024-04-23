@@ -63,7 +63,7 @@ app.post("/api/admin/login", async (req, res) => {
 });
 
 // Regular User Signup Route
-app.post("/api/signup", async (req, res) => {
+app.post("/api/user/signup", async (req, res) => {
   const { username, password } = req.body;
 
   const existingUser = await User.findOne({ username });
@@ -81,7 +81,7 @@ app.post("/api/signup", async (req, res) => {
 });
 
 // Regular User Login Route
-app.post("/api/login", async (req, res) => {
+app.post("/api/user/login", async (req, res) => {
   const { username, password } = req.body;
 
   const user = await User.findOne({ username, userType: "user" }); // Find regular user
@@ -97,7 +97,7 @@ app.post("/api/login", async (req, res) => {
   res.json({ token });
 });
 // Protected Route (same as before)
-app.get("/api/protected", authenticateToken, (req, res) => {
+app.get("/api/user/protected", authenticateToken, (req, res) => {
   res.json({ message: "This is a protected route" });
 });
 
