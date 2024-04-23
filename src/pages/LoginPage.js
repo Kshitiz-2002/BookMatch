@@ -27,10 +27,13 @@ const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    console.log("-----", formData)
+    console.log("-----", formData);
+
+    const loginEndpoint = formData.userType === "admin" ? " http://localhost:3000/api/admin/login" : " http://localhost:3000/api/login";
+
     try {
       // Make POST request to backend here (replace with actual endpoint)
-      const response = await fetch("http://localhost:3000/api/login", {
+      const response = await fetch(loginEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,4 +129,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
