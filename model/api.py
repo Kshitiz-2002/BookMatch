@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import numpy as np
 import pickle
+from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Load data and models
 popular_df = pickle.load(open('popular.pkl', 'rb'))
@@ -22,7 +24,7 @@ def recommend_book():
 
 def recommend(book_name):
     index = np.where(pt.index == book_name)[0][0]
-    similar_items = sorted(list(enumerate(similarity_scores[index])), key=lambda x: x[1], reverse=True)[1:5]
+    similar_items = sorted(list(enumerate(similarity_scores[index])), key=lambda x: x[1], reverse=True)[1:10]
 
     data = []
     for i in similar_items:

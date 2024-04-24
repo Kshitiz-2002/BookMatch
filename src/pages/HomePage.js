@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
+import Searchbar from "../components/Searchbar";
 
 const HomePage = () => {
   // Get the location object using useLocation
@@ -11,7 +12,9 @@ const HomePage = () => {
   return (
     <div>
       <Navbar userType={userType} />
-      {/* Other content of the home page */}
+      <div className="h-screen flex justify-center items-center">
+            <Searchbar/>
+      </div>
     </div>
   );
 };
