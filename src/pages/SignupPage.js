@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SignupPage = () => {
-  // State for storing form data
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -21,14 +20,12 @@ const SignupPage = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      // Make POST request to backend here (replace with actual endpoint)
       const response = await fetch(
         `http://localhost:3000/api/${formData.userType}/signup`,
         {
@@ -41,13 +38,13 @@ const SignupPage = () => {
       );
 
       if (response.ok) {
-        setError("Signup successful");
         setFormData({
           username: "",
           password: "",
-          userType: "user", // Reset to default user signup after successful signup
-          genre: "action", // Reset to default action genre after successful signup
+          userType: "user",
+          genre: "action",
         });
+        window.location.href = "/home";
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Signup failed");
@@ -67,12 +64,7 @@ const SignupPage = () => {
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label
-              htmlFor="username"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Username
-            </label>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
             <input
               type="text"
               id="username"
@@ -84,12 +76,7 @@ const SignupPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
               id="password"
@@ -101,12 +88,7 @@ const SignupPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="genre"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Genre Liking
-            </label>
+            <label htmlFor="genre" className="block text-sm font-medium text-gray-700">Genre Liking</label>
             <select
               id="genre"
               name="genre"
@@ -121,12 +103,7 @@ const SignupPage = () => {
             </select>
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="userType"
-              className="block text-sm font-medium text-gray-700"
-            >
-              User Type
-            </label>
+            <label htmlFor="userType" className="block text-sm font-medium text-gray-700">User Type</label>
             <select
               id="userType"
               name="userType"
@@ -141,18 +118,14 @@ const SignupPage = () => {
 
           <button
             type="submit"
-            className={`w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600 ${
-              loading ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className={`w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
             disabled={loading}
           >
             {loading ? "Signing up..." : "Signup"}
           </button>
           <p className="mt-4 text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/login" className="text-indigo-500 hover:text-indigo-700">
-              Login here
-            </Link>
+            <Link to="/" className="text-indigo-500 hover:text-indigo-700">Login here</Link>
           </p>
         </form>
       </div>
