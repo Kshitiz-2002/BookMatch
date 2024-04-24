@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -45,9 +46,9 @@ const LoginPage = () => {
           userType: "user",
         });
         if (formData.userType === "admin") {
-          window.location.href = "/admin-dashboard";
+          navigate('/home', { state: { userType: formData.userType } });
         } else {
-          window.location.href = "/home";
+          navigate('/home', { state: { userType: formData.userType } });
         }
       } else {
         const errorData = await response.json();

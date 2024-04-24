@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ userType }) => {
+  console.log(userType)
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -93,6 +94,17 @@ const Navbar = () => {
                 Favorites
               </Link>
             </li>
+            {userType === "admin" && (
+              <li>
+                <Link
+                  to="/add-book"
+                  className="block py-2 px-4 rounded hover:bg-indigo-600"
+                  onClick={closeSidebar}
+                >
+                  Add Book
+                </Link>
+              </li>
+            )}
             <li>
               <Link
                 to="/profile"
@@ -134,6 +146,17 @@ const Navbar = () => {
               Favorites
             </Link>
           </li>
+          {userType === "admin" && (
+            <li>
+              <Link
+                to="/add-book"
+                className="hover:text-gray-300 hover:bg-indigo-600 transition duration-300 ease-in-out py-2 px-2 rounded"
+                onClick={closeSidebar}
+              >
+                Add Book
+              </Link>
+            </li>
+          )}
           <li>
             <Link
               to="/profile"
@@ -142,6 +165,7 @@ const Navbar = () => {
               Profile
             </Link>
           </li>
+          
         </ul>
       </div>
     </div>
