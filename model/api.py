@@ -17,7 +17,7 @@ def add_book():
     books_data=[]
     if not request.json:
         return jsonify({'error': 'Invalid request format. Please provide book information in JSON format.'}), 400
-    
+
     # Extract book information from the request
     book_info = request.json
 
@@ -34,10 +34,10 @@ def add_book():
 def recommend_book():
     if not request.json or 'book_name' not in request.json:
         return jsonify({'error': 'Please provide a book name in JSON format.'}), 400
-    
+
     book_name = request.json['book_name']
     recommended_books = recommend(book_name)
-    
+
     return jsonify(recommended_books)
 
 def recommend(book_name):
