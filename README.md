@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+Here's how you can add setup instructions for the environmental variables `JWT_SECRET` and `MONGO_URI` to the README file:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+# Book Recommendation System
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+This is a book recommendation system web application built using Flask for the backend, Express for the API server, and React for the frontend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### API (Flask)
 
-### `npm test`
+1. Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   git clone https://github.com/your-username/book-recommendation-system.git
+   ```
 
-### `npm run build`
+2. Navigate to the backend directory:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   cd book-recommendation-system/backend
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Create a virtual environment (optional but recommended):
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   python3 -m venv venv
+   ```
 
-### `npm run eject`
+4. Activate the virtual environment:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   On macOS/Linux:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   source venv/bin/activate
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   On Windows (PowerShell):
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   .\venv\Scripts\Activate.ps1
+   ```
 
-## Learn More
+5. Install the required dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+6. Run the Flask application:
 
-### Analyzing the Bundle Size
+   ```bash
+   flask run
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   The Flask backend server should now be running on `http://127.0.0.1:5000`.
 
-### Making a Progressive Web App
+### Backend Server (Express)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Navigate to the api-server directory:
 
-### Advanced Configuration
+   ```bash
+   cd book-recommendation-system/api-server
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. Install dependencies:
 
-### Deployment
+   ```bash
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+3. Set up environment variables:
 
-### `npm run build` fails to minify
+   Create a `.env` file in the `api-server` directory with the following content:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```plaintext
+   PORT=3001
+   JWT_SECRET="your_secret_key_here"
+   MONGO_URI="mongodb+srv://username:password@cluster0.0w5mn8q.mongodb.net/bookmatch"
+   ```
+
+   Replace `"your_secret_key_here"` with your actual JWT secret key and update `MONGO_URI` with your MongoDB connection URI.
+
+4. Start the Express server:
+
+   ```bash
+   npm start
+   ```
+
+   The Express API server should now be running on `http://localhost:3000`.
+
+### Frontend (React)
+
+1. Navigate to the frontend directory:
+
+   ```bash
+   cd book-recommendation-system/frontend
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+
+   Create a `.env` file in the `frontend` directory with the following content:
+
+   ```plaintext
+   REACT_APP_API_URL=http://localhost:3000/api
+   ```
+
+   Replace `http://localhost:3000/api` with the URL of your Express API server if it's different.
+
+4. Start the React development server:
+
+   ```bash
+   npm start
+   ```
+
+   The React frontend development server should now be running on `http://localhost:3000`.
+
+## Usage
+
+Open your web browser and navigate to `http://localhost:3001` to use the book recommendation system.
+
+---
+
+Make sure to replace placeholder values like `"your_secret_key_here"` and the MongoDB URI with your actual values.
