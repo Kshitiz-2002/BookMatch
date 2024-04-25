@@ -76,24 +76,6 @@ const Navbar = ({ userType }) => {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                to="/genres"
-                className="block py-2 px-4 rounded hover:bg-indigo-600"
-                onClick={closeSidebar}
-              >
-                Genres
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/favorites"
-                className="block py-2 px-4 rounded hover:bg-indigo-600"
-                onClick={closeSidebar}
-              >
-                Favorites
-              </Link>
-            </li>
             {userType === "admin" && (
               <li>
                 <Link
@@ -114,6 +96,14 @@ const Navbar = ({ userType }) => {
                 Profile
               </Link>
             </li>
+            <li>
+            <Link
+              to="/"
+              className="block py-2 px-4 rounded hover:bg-indigo-600"
+            >
+              Logout
+            </Link>
+          </li>
           </ul>
         </div>
       </aside>
@@ -129,23 +119,7 @@ const Navbar = ({ userType }) => {
             >
               Home
             </Link>
-          </li>
-          <li>
-            <Link
-              to="/genres"
-              className="hover:text-gray-300 hover:bg-indigo-600 transition duration-300 ease-in-out py-2 px-2 rounded"
-            >
-              Genres
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/favorites"
-              className="hover:text-gray-300 hover:bg-indigo-600 transition duration-300 ease-in-out py-2 px-2 rounded"
-            >
-              Favorites
-            </Link>
-          </li>
+          </li> 
           {userType === "admin" && (
             <li>
               <Link
@@ -163,6 +137,14 @@ const Navbar = ({ userType }) => {
               className="hover:text-gray-300 hover:bg-indigo-600 transition duration-300 ease-in-out py-2 px-2 rounded"
             >
               Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/"
+              className="hover:text-gray-300 hover:bg-indigo-600 transition duration-300 ease-in-out py-2 px-2 rounded"
+            >
+              Logout
             </Link>
           </li>
           
