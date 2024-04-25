@@ -1,7 +1,3 @@
-Here's how you can add setup instructions for the environmental variables `JWT_SECRET` and `MONGO_URI` to the README file:
-
----
-
 # Book Recommendation System
 
 ## Overview
